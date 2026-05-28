@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Exam Score Predictor</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+</head>
+<body>
+    <main class="app-shell">
+        <section class="hero-panel" aria-labelledby="page-title">
+            <div class="hero-content">
+                <p class="eyebrow">Machine Learning Project</p>
+                <h1 id="page-title">Student Exam Score Predictor</h1>
+                <p class="hero-copy">
+                    Enter study habits and previous performance to estimate a final exam score using a trained Linear Regression model.
+                </p>
+                <div class="stats-row" aria-label="Project highlights">
+                    <div>
+                        <span>500</span>
+                        <small>training rows</small>
+                    </div>
+                    <div>
+                        <span>4</span>
+                        <small>input features</small>
+                    </div>
+                    <div>
+                        <span>JSON</span>
+                        <small>API response</small>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section class="predictor-card" aria-label="Prediction form">
+            <div class="card-header">
+                <p class="eyebrow">Try a Prediction</p>
+                <h2>Student Details</h2>
+            </div>
+
+            <form id="predictionForm" novalidate>
+                <div class="form-grid">
+                    <label class="input-group" for="study_hours">
+                        <span>Study Hours</span>
+                        <input type="number" id="study_hours" name="study_hours" min="0" max="16" step="0.1" placeholder="Example: 6.5" required>
+                        <small>Range: 0 to 16 hours per day</small>
+                    </label>
+
+                    <label class="input-group" for="attendance">
+                        <span>Attendance Percentage</span>
+                        <input type="number" id="attendance" name="attendance" min="0" max="100" step="0.1" placeholder="Example: 88" required>
+                        <small>Range: 0 to 100%</small>
+                    </label>
+
+                    <label class="input-group" for="sleep_hours">
+                        <span>Sleep Hours</span>
+                        <input type="number" id="sleep_hours" name="sleep_hours" min="0" max="12" step="0.1" placeholder="Example: 7.5" required>
+                        <small>Range: 0 to 12 hours</small>
+                    </label>
+
+                    <label class="input-group" for="previous_marks">
+                        <span>Previous Exam Marks</span>
+                        <input type="number" id="previous_marks" name="previous_marks" min="0" max="100" step="0.1" placeholder="Example: 76" required>
+                        <small>Range: 0 to 100 marks</small>
+                    </label>
+                </div>
+
+                <button class="predict-button" type="submit">
+                    <span class="button-text">Predict Score</span>
+                    <span class="loader" aria-hidden="true"></span>
+                </button>
+            </form>
+
+            <div id="message" class="message" role="status" aria-live="polite"></div>
+
+            <div id="resultCard" class="result-card hidden">
+                <p>Predicted Final Exam Score</p>
+                <strong><span id="predictionValue">0</span>/100</strong>
+                <div class="score-bar" aria-hidden="true">
+                    <span id="scoreFill"></span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script src="{{ url_for('static', filename='js/script.js') }}"></script>
+</body>
+</html>
